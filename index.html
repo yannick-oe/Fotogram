@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotogram</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fotogram</title>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./dom.js" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./fonts/fonts.css" />
 </head>
 
 <body>
+  <div class="layout">
 
-    <div class="layout">
+    <header>
+      <div class="container inner-header">
+        <img src="./img/logo.png" alt="Fotogram Logo">
+      </div>
+    </header>
 
-        <header>
-            <img src="./img/logo.png" alt="Fotogram Logo">
-        </header>
+    <main class="page container">
+      <h1>Your personal photo album</h1>
 
-        <main class="page">
-            <h1>Test weil das hier ist ein ewig langer text</h1>
-        </main>
+      <section class="gallery">
+        <img src="./img/pic1.jpg" alt="Foto eines beschneiten Bergsees">
+        <img src="./img/pic2.jpg" alt="Foto von einer düsteren Stadt">
+        <img src="./img/pic3.png" alt="Foto von einem bewökten Himmel">
+        <img src="./img/pic4.jpg" alt="Foto von einem Vogel, der auf einem Ast sitzt">
+        <img src="./img/pic5.jpg" alt="Foto von der Erdoberfläche">
+        <img src="./img/pic6.jpg" alt="Foto von einem Fluss in den Bergen bei Schnee">
+        <img src="./img/pic7.jpg" alt="Foto von einer Ente auf dem Wasser">
+        <img src="./img/pic8.jpg" alt="Foto von einem Menschen bei Dunkelheit am Meer">
+        <img src="./img/pic9.jpg" alt="Foto von einem Vogel, der auf Steinen sitzt">
+        <img src="./img/pic10.jpg" alt="Foto von einem Baby-Gepard">
+        <img src="./img/pic11.jpg" alt="Foto von dem Himmel über Bergen">
+        <img src="./img/pic12.jpg" alt="Foto von einem verschneiten Baum">
+      </section>
+    </main>
 
-        <footer>
-            <p>Ich bin der Fooetr</p>
-        </footer>
-    </div>
+    <footer>
+      <div class="footer-inner">
+        <img src="./img/da_logo.png" alt="Developer Akademie Logo">
+        <span>© 2023 Developer Akademie GmbH</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="./dom.js" defer></script>
 </body>
-
 </html>
