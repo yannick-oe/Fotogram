@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fotogram</title>
 
-    <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32" />
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./fonts/fonts.css" />
@@ -39,8 +39,31 @@
                 <img src="./img/mountain-sky.jpg" alt="Mountain Peaks under Blue Sky"
                     data-title="Mountain Peaks under Blue Sky">
                 <img src="./img/frozen-tree.jpg" alt="Frozen Tree in Winter" data-title="Frozen Tree in Winter">
-            
+
             </section>
+
+
+            <dialog id="imageDialog" aria-labelledby="dialogTitle">
+
+                <header class="dialog-header">
+                    <h2 id="dialogTitle">Image Title</h2>
+
+                    <button id="closeDialog" type="button" aria-label="close Dialog">
+                        ×
+                    </button>
+                </header>
+
+                <section class="dialog-content">
+                    <img id="dialogImage" src="" alt="">
+                </section>
+
+                <footer class="dialog-footer">
+                    <button id="prevSlide" type="button" aria-label="Next Image">←</button>
+                    <span id="dialogCounter">1/12</span>
+                    <button id="nextSlide" type="button" aria-label="Previous Image">→</button>
+                </footer>
+
+            </dialog>
 
         </main>
 
