@@ -24,24 +24,7 @@
         <main class="page container">
             <h1>Your personal photo album</h1>
 
-            <section class="gallery">
-
-                <img src="./img/glacier-lake.jpg" alt="Glacier Lake in Alaska" data-title="Glacier Lake in Alaska">
-                <img src="./img/cyberpunk-city.jpg" alt="Neon City at Night" data-title="Neon City at Night">
-                <img src="./img/storm-clouds.jpg" alt="Dramatic Storm Clouds" data-title="Dramatic Storm Clouds">
-                <img src="./img/blue-tit-branch.jpg" alt="Blue Tit on a Branch" data-title="Blue Tit on a Branch">
-                <img src="./img/hurricane-eye.jpg" alt="Eye of the Storm" data-title="Eye of the Storm">
-                <img src="./img/mountain-lake-winter.jpg" alt="Winter Mountain Lake" data-title="Winter Mountain Lake">
-                <img src="./img/duck-on-water.jpg" alt="Duck on Calm Water" data-title="Duck on Calm Water">
-                <img src="./img/man-on-rock.jpg" alt="Lonely Figure at Sea" data-title="Lonely Figure at Sea">
-                <img src="./img/small-bird-rock.jpg" alt="Bird Resting on a Rock" data-title="Bird Resting on a Rock">
-                <img src="./img/snow-leopard-cub.jpg" alt="Snow Leopard Cub" data-title="Snow Leopard Cub">
-                <img src="./img/mountain-sky.jpg" alt="Mountain Peaks"
-                    data-title="Mountain Peaks">
-                <img src="./img/frozen-tree.jpg" alt="Frozen Tree in Winter" data-title="Frozen Tree in Winter">
-
-            </section>
-
+            <section class="gallery" id="gallery"></section>
 
             <dialog id="imageDialog" aria-labelledby="dialogTitle">
 
@@ -58,9 +41,9 @@
                 </section>
 
                 <footer class="dialog-footer">
-                    <button id="prevButton" type="button" aria-label="Next Image">←</button>
+                    <button id="prevButton" type="button" aria-label="Previous Image">←</button>
                     <span id="dialogCounter">1/12</span>
-                    <button id="nextButton" type="button" aria-label="Previous Image">→</button>
+                    <button id="nextButton" type="button" aria-label="Next Image">→</button>
                 </footer>
 
             </dialog>

@@ -64,6 +64,17 @@ h1 {
     border: 2px solid #124658;
     box-sizing: border-box;
     cursor: pointer;
+    transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+    border-color: #1b6b86;
+}
+
+.gallery img:focus {
+    outline: 2px solid #1b6b86;
+    outline-offset: 4px;
 }
 
 .gallery img:nth-child(8) {
