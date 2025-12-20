@@ -1,7 +1,6 @@
 html,
 body {
     margin: 0;
-    min-height: 100%;
     font-family: 'Figtree', sans-serif;
 }
 
@@ -282,7 +281,6 @@ h1 {
     #imageDialog {
         width: 560px;
         height: 620px;
-        padding-top: 64px;
     }
 
     #imageDialog .dialog-header {
@@ -295,8 +293,7 @@ h1 {
 
     #imageDialog #dialogImage {
         width: 480px;
-        height: auto;
-        aspect-ratio: 560 / 375;
+        height: 300px;
     }
 
     #imageDialog .dialog-footer {
