@@ -10,24 +10,32 @@ const prevBtn = document.getElementById("prevButton");
 const nextBtn = document.getElementById("nextButton");
 
 let currentIndex = 0;
+const ANIMATION_MS = 220;
 
 function updateDialog(index) {
   const img = galleryImages[index];
 
-  dialogTitle.textContent = img.dataset.title;
+  dialogTitle.textContent = img.dataset.title || "Untitled";
   dialogImage.src = img.src;
-  dialogImage.alt = img.dataset.title;
+  dialogImage.alt = img.dataset.title || img.alt || "Image";
   dialogCounter.textContent = `${index + 1}/${galleryImages.length}`;
 }
 
 function openDialogAt(index) {
   currentIndex = index;
   updateDialog(currentIndex);
+
   dialogEl.showModal();
+
+  dialogEl.classList.add("opened");
 }
 
 function closeDialog() {
-  dialogEl.close();
+  dialogEl.classList.remove("opened");
+
+  window.setTimeout(() => {
+    dialogEl.close();
+  }, ANIMATION_MS);
 }
 
 function showPrev() {
