@@ -1,65 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fotogram</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fotogram</title>
 
-    <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./fonts/fonts.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./fonts/fonts.css" />
 </head>
 
 <body>
-    <div class="layout">
-
-        <header>
-            <div class="container inner-header">
-                <img src="./img/logo.png" alt="Fotogram Logo">
-            </div>
-        </header>
-
-        <main class="page container">
-            <h1>Your personal photo album</h1>
-
-            <section class="gallery" id="gallery"></section>
-
-            <dialog id="imageDialog" aria-labelledby="dialogTitle">
-
-                <header class="dialog-header">
-                    <h2 id="dialogTitle">Image Title</h2>
-
-                    <button id="closeDialog" type="button" aria-label="close Dialog">
-                        ×
-                    </button>
-                </header>
-
-                <section class="dialog-content">
-                    <img id="dialogImage" src="" alt="">
-                </section>
-
-                <footer class="dialog-footer">
-                    <button id="prevButton" type="button" aria-label="Previous Image">←</button>
-                    <span id="dialogCounter">1/12</span>
-                    <button id="nextButton" type="button" aria-label="Next Image">→</button>
-                </footer>
-
-            </dialog>
-
-        </main>
-
-        <footer>
-            <div class="footer-inner">
-                <img src="./img/da_logo.png" alt="Developer Akademie Logo">
-                <span>© 2023 Developer Akademie GmbH</span>
-            </div>
-        </footer>
-
+  <header class="site-header">
+    <div class="container inner-header">
+      <img src="./img/logo.png" alt="Fotogram Logo" />
     </div>
+  </header>
 
-    <script src="./dom.js" defer></script>
+  <main class="page container">
+    <h1>Your personal photo album</h1>
+
+    <section class="gallery" id="gallery" aria-label="Photo gallery"></section>
+
+    <dialog id="imageDialog" aria-labelledby="dialogTitle" aria-describedby="dialogCounter">
+      <header class="dialog-header">
+        <h2 id="dialogTitle"></h2>
+        <button id="closeDialog" type="button" aria-label="Close dialog">×</button>
+      </header>
+
+      <section class="dialog-content">
+        <img id="dialogImage" src="" alt="" />
+      </section>
+
+      <footer class="dialog-footer">
+        <button id="prevButton" type="button" aria-label="Previous image">←</button>
+        <span id="dialogCounter"></span>
+        <button id="nextButton" type="button" aria-label="Next image">→</button>
+      </footer>
+    </dialog>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <img src="./img/da_logo.png" alt="Developer Akademie Logo" />
+      <span>© 2023 Developer Akademie GmbH</span>
+    </div>
+  </footer>
+
+  <script src="./dom.js" defer></script>
 </body>
-
 </html>

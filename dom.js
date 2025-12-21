@@ -1,6 +1,6 @@
-const galleryEl = document.querySelector(".gallery");
+const galleryEl = document.getElementById("gallery");
 
-const dialogEl = document.getElementById("imageDialog");
+const dialog = document.getElementById("imageDialog");
 const dialogTitle = document.getElementById("dialogTitle");
 const dialogImage = document.getElementById("dialogImage");
 const dialogCounter = document.getElementById("dialogCounter");
@@ -10,120 +10,105 @@ const prevBtn = document.getElementById("prevButton");
 const nextBtn = document.getElementById("nextButton");
 
 let currentIndex = 0;
-const ANIMATION_MS = 220;
 
 const images = [
-    { src: "./img/glacier-lake.jpg", title: "Glacier Lake in Alaska", alt: "Glacier Lake in Alaska" },
-    { src: "./img/cyberpunk-city.jpg", title: "Neon City at Night", alt: "Neon City at Night" },
-    { src: "./img/storm-clouds.jpg", title: "Dramatic Storm Clouds", alt: "Dramatic Storm Clouds" },
-    { src: "./img/blue-tit-branch.jpg", title: "Blue Tit on a Branch", alt: "Blue Tit on a Branch" },
-    { src: "./img/hurricane-eye.jpg", title: "Eye of the Storm", alt: "Eye of the Storm" },
-    { src: "./img/mountain-lake-winter.jpg", title: "Winter Mountain Lake", alt: "Winter Mountain Lake" },
-    { src: "./img/duck-on-water.jpg", title: "Duck on Calm Water", alt: "Duck on Calm Water" },
-    { src: "./img/man-on-rock.jpg", title: "Lonely Figure at Sea", alt: "Lonely Figure at Sea" },
-    { src: "./img/small-bird-rock.jpg", title: "Bird Resting on a Rock", alt: "Bird Resting on a Rock" },
-    { src: "./img/snow-leopard-cub.jpg", title: "Snow Leopard Cub", alt: "Snow Leopard Cub" },
-    { src: "./img/mountain-sky.jpg", title: "Mountain Peaks", alt: "Mountain Peaks under Blue Sky" },
-    { src: "./img/frozen-tree.jpg", title: "Frozen Tree in Winter", alt: "Frozen Tree in Winter" },
+  { src: "./img/glacier-lake.jpg", title: "Glacier Lake in Alaska", alt: "Glacier Lake in Alaska" },
+  { src: "./img/cyberpunk-city.jpg", title: "Neon City at Night", alt: "Neon City at Night" },
+  { src: "./img/storm-clouds.jpg", title: "Dramatic Storm Clouds", alt: "Dramatic Storm Clouds" },
+  { src: "./img/blue-tit-branch.jpg", title: "Blue Tit on a Branch", alt: "Blue Tit on a Branch" },
+  { src: "./img/hurricane-eye.jpg", title: "Eye of the Storm", alt: "Eye of the Storm" },
+  { src: "./img/mountain-lake-winter.jpg", title: "Winter Mountain Lake", alt: "Winter Mountain Lake" },
+  { src: "./img/duck-on-water.jpg", title: "Duck on Calm Water", alt: "Duck on Calm Water" },
+  { src: "./img/man-on-rock.jpg", title: "Lonely Figure at Sea", alt: "Lonely Figure at Sea" },
+  { src: "./img/small-bird-rock.jpg", title: "Bird Resting on a Rock", alt: "Bird Resting on a Rock" },
+  { src: "./img/snow-leopard-cub.jpg", title: "Snow Leopard Cub", alt: "Snow Leopard Cub" },
+  { src: "./img/mountain-sky.jpg", title: "Mountain Peaks", alt: "Mountain Peaks under Blue Sky" },
+  { src: "./img/frozen-tree.jpg", title: "Frozen Tree in Winter", alt: "Frozen Tree in Winter" },
 ];
 
 function renderGallery() {
-    galleryEl.innerHTML = "";
+  let html = "";
 
-    images.forEach((imgData, index) => {
-        const img = document.createElement("img");
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
 
-        img.src = imgData.src;
-        img.alt = imgData.alt || imgData.title || "Image";
-        img.dataset.title = imgData.title || "Untitled";
+    html += `
+      <button class="thumb" type="button" data-index="${i}" aria-label="Open image: ${img.title}">
+        <img src="${img.src}" alt="${img.alt}">
+      </button>
+    `;
+  }
 
-        img.tabIndex = 0;
-
-        img.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                openDialogAt(index);
-            }
-        });
-
-        img.addEventListener("click", () => openDialogAt(index));
-
-        galleryEl.appendChild(img);
-    });
-}
-
-function getGalleryImages() {
-    return document.querySelectorAll(".gallery img");
+  galleryEl.innerHTML = html;
 }
 
 function updateDialog(index) {
-    const galleryImages = getGalleryImages();
-    const img = galleryImages[index];
+  const img = images[index];
 
-    dialogTitle.textContent = img.dataset.title || "Untitled";
-    dialogImage.src = img.src;
-    dialogImage.alt = img.alt || img.dataset.title || "Image";
-    dialogCounter.textContent = `${index + 1}/${galleryImages.length}`;
+  dialogTitle.textContent = img.title;
+  dialogImage.src = img.src;
+  dialogImage.alt = img.alt;
+  dialogCounter.textContent = `${index + 1}/${images.length}`;
 }
 
 function openDialogAt(index) {
-    currentIndex = index;
-    updateDialog(currentIndex);
+  currentIndex = index;
+  updateDialog(currentIndex);
 
-    dialogEl.showModal();
-    dialogEl.classList.add("opened");
-
-    closeBtn.focus();
+  dialog.showModal();
+  dialog.classList.add("opened");
+  document.body.classList.add("no-scroll");
+  closeBtn.focus();
 }
 
 function closeDialog() {
-    dialogEl.classList.remove("opened");
+  dialog.classList.remove("opened");
+  dialog.close();
 
-    window.setTimeout(() => {
-        dialogEl.close();
-    }, ANIMATION_MS);
+  document.body.classList.remove("no-scroll");
 }
 
-function showPrev() {
-    const galleryImages = getGalleryImages();
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateDialog(currentIndex);
+function changeSlide(step) {
+  currentIndex = (currentIndex + step + images.length) % images.length;
+  updateDialog(currentIndex);
 }
 
-function showNext() {
-    const galleryImages = getGalleryImages();
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    updateDialog(currentIndex);
-}
+galleryEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".thumb");
+  if (!btn) return;
 
-function addGalleryListeners() {
-    const galleryImages = getGalleryImages();
+  openDialogAt(Number(btn.dataset.index));
+});
 
-    galleryImages.forEach((img, index) => {
-        img.addEventListener("click", () => openDialogAt(index));
-    });
-}
+galleryEl.addEventListener("keydown", (e) => {
+  const btn = e.target.closest(".thumb");
+  if (!btn) return;
+
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    openDialogAt(Number(btn.dataset.index));
+  }
+});
 
 closeBtn.addEventListener("click", closeDialog);
-prevBtn.addEventListener("click", showPrev);
-nextBtn.addEventListener("click", showNext);
-
-dialogEl.addEventListener("cancel", (e) => {
-    e.preventDefault();
-    closeDialog();
-});
+prevBtn.addEventListener("click", () => changeSlide(-1));
+nextBtn.addEventListener("click", () => changeSlide(1));
 
 document.addEventListener("keydown", (e) => {
-    if (!dialogEl.open) return;
+  if (!dialog.open) return;
 
-    if (e.key === "ArrowLeft") showPrev();
-    if (e.key === "ArrowRight") showNext();
-    if (e.key === "Escape") closeDialog();
+  if (e.key === "ArrowLeft") changeSlide(-1);
+  if (e.key === "ArrowRight") changeSlide(1);
+  if (e.key === "Escape") closeDialog();
 });
 
-dialogEl.addEventListener("click", (e) => {
-    if (e.target === dialogEl) closeDialog();
+dialog.addEventListener("click", (e) => {
+  if (e.target === dialog) closeDialog();
+});
+
+dialog.addEventListener("cancel", (e) => {
+  e.preventDefault();
+  closeDialog();
 });
 
 renderGallery();
-addGalleryListeners();
