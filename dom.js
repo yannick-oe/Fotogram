@@ -1,4 +1,4 @@
-const galleryEl = document.getElementById("gallery");
+const galleryContainer = document.getElementById("gallery");
 
 const dialog = document.getElementById("imageDialog");
 const dialogTitle = document.getElementById("dialogTitle");
@@ -39,15 +39,15 @@ function renderGallery() {
     `;
   }
 
-  galleryEl.innerHTML = html;
+  galleryContainer.innerHTML = html;
 }
 
 function updateDialog(index) {
   const img = images[index];
 
-  dialogTitle.textContent = img.title;
+  dialogTitle.textContent = img.title || "Untitled";
   dialogImage.src = img.src;
-  dialogImage.alt = img.alt;
+  dialogImage.alt = img.alt || img.title || "Image";
   dialogCounter.textContent = `${index + 1}/${images.length}`;
 }
 
@@ -64,30 +64,28 @@ function openDialogAt(index) {
 function closeDialog() {
   dialog.classList.remove("opened");
   dialog.close();
-
   document.body.classList.remove("no-scroll");
 }
 
 function changeSlide(step) {
-  currentIndex = (currentIndex + step + images.length) % images.length;
+  currentIndex = currentIndex + step;
+
+  if (currentIndex < 0) {
+    currentIndex = images.length - 1;
+  }
+
+  if (currentIndex >= images.length) {
+    currentIndex = 0;
+  }
+
   updateDialog(currentIndex);
 }
 
-galleryEl.addEventListener("click", (e) => {
+galleryContainer.addEventListener("click", (e) => {
   const btn = e.target.closest(".thumb");
   if (!btn) return;
 
   openDialogAt(Number(btn.dataset.index));
-});
-
-galleryEl.addEventListener("keydown", (e) => {
-  const btn = e.target.closest(".thumb");
-  if (!btn) return;
-
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    openDialogAt(Number(btn.dataset.index));
-  }
 });
 
 closeBtn.addEventListener("click", closeDialog);
@@ -111,4 +109,8 @@ dialog.addEventListener("cancel", (e) => {
   closeDialog();
 });
 
-renderGallery();
+function init() {
+  renderGallery();
+}
+
+init();
