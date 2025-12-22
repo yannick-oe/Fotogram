@@ -30,7 +30,11 @@ function renderGallery() {
   let html = "";
 
   for (let i = 0; i < images.length; i++) {
-    html += `
+    html += codeHTML(i);
+  }
+
+  function codeHTML(i) {
+    return `
       <button
         class="thumb"
         type="button"
