@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fotogram</title>
+    <title>Impressum</title>
 
     <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32" />
 
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./fonts/fonts.css" />
 </head>
 
-<body onload="init()">
+<body>
     <header class="site-header">
         <div class="container inner-header">
             <a href="./index.html"><img src="./img/logo.png" alt="Fotogram Logo" /></a>
@@ -23,32 +23,28 @@
             </nav>
         </div>
     </header>
-
-
     <main class="page container">
-        <h1>Your personal photo album</h1>
+        <section class="legal-content">
+            <h1>Imprint</h1>
 
-        <section class="gallery" id="gallery" aria-label="Photo gallery"></section>
+            <p>
+                Yannick Oetelshoven<br />
+                Kastnergasse 3/5<br />
+                1170 Vienna<br />
+                Austria
+            </p>
 
-        <dialog id="imageDialog" aria-labelledby="dialogTitle" aria-describedby="dialogCounter"
-            onclick="closeDialogByBackdrop(event)">
-            <header class="dialog-header">
-                <h2 id="dialogTitle"></h2>
-                <button id="closeDialog" type="button" aria-label="Close dialog">×</button>
-            </header>
+            <h2>Contact</h2>
+            <p>
+                Email: <a href="mailto:yannickoetelshoven@gmail.com">yannickoetelshoven@gmail.com</a>
+            </p>
 
-            <section class="dialog-content">
-                <img id="dialogImage" src="" alt="" />
-            </section>
+            <p>
+                This website is a private, non-commercial project.
+            </p>
 
-            <footer class="dialog-footer">
-                <button id="prevButton" type="button" aria-label="Previous image">←</button>
-                <span id="dialogCounter"></span>
-                <button id="nextButton" type="button" aria-label="Next image">→</button>
-            </footer>
-        </dialog>
+        </section>
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner">
             <img src="./img/da_logo.png" alt="Developer Akademie Logo" />
@@ -58,5 +54,3 @@
 
     <script src="./dom.js" defer></script>
 </body>
-
-</html>
