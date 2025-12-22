@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./fonts/fonts.css" />
 </head>
 
-<body>
+<body onload="init()">
   <header class="site-header">
     <div class="container inner-header">
       <img src="./img/logo.png" alt="Fotogram Logo" />
@@ -23,7 +23,7 @@
 
     <section class="gallery" id="gallery" aria-label="Photo gallery"></section>
 
-    <dialog id="imageDialog" aria-labelledby="dialogTitle" aria-describedby="dialogCounter">
+    <dialog id="imageDialog" aria-labelledby="dialogTitle" aria-describedby="dialogCounter" onclick="closeDialogByBackdrop(event)">
       <header class="dialog-header">
         <h2 id="dialogTitle"></h2>
         <button id="closeDialog" type="button" aria-label="Close dialog">×</button>

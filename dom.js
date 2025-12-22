@@ -23,18 +23,21 @@ const images = [
   { src: "./img/small-bird-rock.jpg", title: "Bird Resting on a Rock", alt: "Bird Resting on a Rock" },
   { src: "./img/snow-leopard-cub.jpg", title: "Snow Leopard Cub", alt: "Snow Leopard Cub" },
   { src: "./img/mountain-sky.jpg", title: "Mountain Peaks", alt: "Mountain Peaks under Blue Sky" },
-  { src: "./img/frozen-tree.jpg", title: "Frozen Tree in Winter", alt: "Frozen Tree in Winter" },
+  { src: "./img/frozen-tree.jpg", title: "Frozen Tree in Winter", alt: "Frozen Tree in Winter" }
 ];
 
 function renderGallery() {
   let html = "";
 
   for (let i = 0; i < images.length; i++) {
-    const img = images[i];
-
     html += `
-      <button class="thumb" type="button" data-index="${i}" aria-label="Open image: ${img.title}">
-        <img src="${img.src}" alt="${img.alt}">
+      <button
+        class="thumb"
+        type="button"
+        onclick="openDialogAt(${i})"
+        aria-label="Open image: ${images[i].title}"
+      >
+        <img src="${images[i].src}" alt="${images[i].alt}">
       </button>
     `;
   }
@@ -45,10 +48,10 @@ function renderGallery() {
 function updateDialog(index) {
   const img = images[index];
 
-  dialogTitle.textContent = img.title || "Untitled";
+  dialogTitle.textContent = img.title;
   dialogImage.src = img.src;
-  dialogImage.alt = img.alt || img.title || "Image";
-  dialogCounter.textContent = `${index + 1}/${images.length}`;
+  dialogImage.alt = img.alt;
+  dialogCounter.textContent = (index + 1) + "/" + images.length;
 }
 
 function openDialogAt(index) {
@@ -81,16 +84,11 @@ function changeSlide(step) {
   updateDialog(currentIndex);
 }
 
-galleryContainer.addEventListener("click", (e) => {
-  const btn = e.target.closest(".thumb");
-  if (!btn) return;
-
-  openDialogAt(Number(btn.dataset.index));
-});
-
-closeBtn.addEventListener("click", closeDialog);
-prevBtn.addEventListener("click", () => changeSlide(-1));
-nextBtn.addEventListener("click", () => changeSlide(1));
+function closeDialogByBackdrop(event) {
+  if (event.target === dialog) {
+    closeDialog();
+  }
+}
 
 document.addEventListener("keydown", (e) => {
   if (!dialog.open) return;
@@ -100,17 +98,10 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeDialog();
 });
 
-dialog.addEventListener("click", (e) => {
-  if (e.target === dialog) closeDialog();
-});
-
-dialog.addEventListener("cancel", (e) => {
-  e.preventDefault();
-  closeDialog();
-});
-
 function init() {
   renderGallery();
-}
 
-init();
+  closeBtn.onclick = closeDialog;
+  prevBtn.onclick = function () { changeSlide(-1); };
+  nextBtn.onclick = function () { changeSlide(1); };
+}
